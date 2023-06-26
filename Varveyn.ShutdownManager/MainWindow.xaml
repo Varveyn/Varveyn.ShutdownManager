@@ -1,0 +1,15 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Varveyn.ShutdownManager"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="Varveyn.ShutdownManager.MainWindow"
+        mc:Ignorable="d"
+        Title="Shutdown Manager" Height="160" Width="240">
+    <Grid>
+        <syncfusion:TimeSpanEdit Name="shutdownTimespanEdit" AllowNull="True" HorizontalAlignment="Center" Height="22" Margin="0,10,0,0" NullString="Enter a duration" TextWrapping="Wrap" Text="TimeSpanEdit" Value="0.0:20:0.0" VerticalAlignment="Top" Width="180" Format="hh:mm:ss" MinValue="0.0:0:0" />
+        <Slider Name="preselectedValuesPicker" HorizontalAlignment="Center" Margin="0,37,0,0" VerticalAlignment="Top" Width="180" Height="22" Minimum="1" Maximum="5" Value="3" TickFrequency="1" IsSnapToTickEnabled="True" />
+        <Button Name="scheduleButton" Content="Schedule Shutdown" HorizontalAlignment="Center" Margin="0,64,0,0" VerticalAlignment="Top" Width="120" Height="27"/>
+    </Grid>
+</Window>
