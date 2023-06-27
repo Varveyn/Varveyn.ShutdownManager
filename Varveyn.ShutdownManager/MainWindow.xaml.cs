@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Varveyn.ShutdownManager
 {
@@ -22,6 +12,9 @@ namespace Varveyn.ShutdownManager
     {
         public MainWindow()
         {
+            var licenseKey = File.ReadAllText("syncfusion-license.txt");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(licenseKey);
+
             InitializeComponent();
 
             this.preselectedValuesPicker.ValueChanged += HandlePreselectedValueChange;
@@ -30,7 +23,11 @@ namespace Varveyn.ShutdownManager
 
         private void HandleScheduleClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Scheduled!");
+            var span = this.shutdownTimespanEdit.Value;
+
+            var shutdownDelayInSeconds = span?.TotalSeconds ?? 1200;
+
+            Process.Start("shutdown", $"/s /t {shutdownDelayInSeconds}");
         }
 
         private void HandlePreselectedValueChange(object sender, RoutedPropertyChangedEventArgs<double> e)
